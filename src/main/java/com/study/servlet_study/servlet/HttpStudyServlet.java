@@ -81,13 +81,11 @@ public class HttpStudyServlet extends HttpServlet {
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		Map<String, String> paramsMap = ParamsConverter.convertParamasMapToMap(request.getParameterMap());
-
+		Map<String, String> paramsMap = ParamsConverter.convertParamsMapToMap(request.getParameterMap());
+				
 		System.out.println(paramsMap);
-		
 	}
-
+	
 
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
