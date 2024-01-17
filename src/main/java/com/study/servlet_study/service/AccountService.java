@@ -20,7 +20,11 @@ public class AccountService {
 		}
 	
 	public int addAccount(Account account) {
-		return 0;
+		return accountRepository.saveAccount(account);
+	}
+	
+	public Account getAccount(String username) {
+		return accountRepository.findAccountByUsername(username);
 	}
 
 }
