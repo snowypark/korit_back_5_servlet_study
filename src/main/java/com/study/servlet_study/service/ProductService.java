@@ -20,6 +20,8 @@ public class ProductService {
 		return instance;
 	}
 	
+	
+	
 	public int addProduct(Product product) {
 		return productRepository.saveProduct(product);
 	}
@@ -27,6 +29,8 @@ public class ProductService {
 	public Product getProduct(String productName) {
 		return productRepository.findProductByProductName(productName);
 	}
+	
+
 	
 
 }

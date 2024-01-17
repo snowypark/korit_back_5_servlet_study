@@ -30,6 +30,7 @@ public class AccountServlet extends HttpServlet {
 		response.setStatus(200);
 		response.getWriter().println(account);
 		
+			
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
