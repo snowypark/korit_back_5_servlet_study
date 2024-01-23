@@ -17,8 +17,8 @@ public class HelloServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		System.out.println(request.getMethod());
-		System.out.println(request.getRequestURI()); 
-		System.out.println(request.getRequestURL()); //url
+		System.out.println(request.getRequestURI()); //URI=식별자
+		System.out.println(request.getRequestURL()); //URL=전체(http 포함)
 		System.out.println(response.getStatus());
 		
 		

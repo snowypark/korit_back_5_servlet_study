@@ -62,7 +62,5 @@ public class ProductServlet extends HttpServlet{
 		response.setStatus(201);
 		response.getWriter().println("상품 등록이 완료되었습니다.");
 		
-		
-
 }
 }
