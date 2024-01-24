@@ -1,5 +1,8 @@
 package com.study.servlet_study.service;
 
+import java.util.List;
+import java.util.Map;
+
 import com.study.servlet_study.repository.BookRepository;
 import com.study.servlet_study.test.Book;
 
@@ -27,6 +30,10 @@ public class BookService {
 	public Book getBook(int bookId) {
 		return bookRepository.findBookByBookId(bookId);
 	}
-	
 
+	public List<Book> searchBookList(Map<String, String> params) {
+	    return bookRepository.searchBookList(params);
+	    	    
+	}
+	
 }
