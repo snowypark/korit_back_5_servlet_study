@@ -21,43 +21,36 @@ public class BookSearchMain {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String searchBook = null;
+		List<Book> bookList = new ArrayList<>(); // Book 객체
+		
+		
+		String searchValue = null;
 		String sql = null;
 		System.out.print("검색할 도서명을 입력하세요 >>> ");
-		searchBook = scanner.nextLine();
-		System.out.println(searchBook);
+		searchValue = scanner.nextLine();
+		System.out.println(searchValue);
 		
 		
 		try {			
 			con = pool.getConnection();
 			
-			sql = "SELECT \r\n"
-					+ "	bt.book_id, "
-					+ "bt.book_name, \r\n"
-					+ "    at.author_id, \r\n"
-					+ "    at.author_name, \r\n"
-					+ "    pt.publisher_id, \r\n"
-					+ "    pt.publisher_name\r\n"
-					+ "\r\n"
-					+ "FROM \r\n"
-					+ "	book_register_tb brt \r\n"
-					+ "    LEFT JOIN book_tb bt ON brt.book_id = bt.book_id \r\n"
-					+ "	LEFT JOIN author_tb at ON bt.author_id = at.author_id \r\n"
-					+ "	LEFT JOIN publisher_tb pt ON bt.publisher_id = pt.publisher_id\r\n"
-					+ "WHERE \r\n"
-					+ "	bt.book_name LIKE ? \r\n"
-					+ "ORDER BY \r\n"
-					+ "	bt.book_id";
+			sql = "select\r\n"
+					+ "		bt.book_id,\r\n"			//1
+					+ "    bt.book_name,\r\n"			//2
+					+ "    bt.author_id,\r\n"			//3
+					+ "    at.author_name,\r\n"			//4
+					+ "    bt.publisher_id,\r\n"		//5
+					+ "    pt.publisher_name\r\n"		//6
+					+ "from\r\n"
+					+ "	book_tb bt\r\n"
+					+ "    left outer join author_tb at on(at.author_id = bt.author_id)\r\n"
+					+ "    left outer join publisher_tb pt on(pt.publisher_id = bt.publisher_id)\r\n"
+					+ "where\r\n"
+					+ "	bt.book_name like ?"; // like ? 형태 -> setString에서 "%" + value + "%"
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, "%" + searchBook + "%");
+			pstmt.setString(1, "%" + searchValue +"%"); //1번째 ?에 값 넣기 
 			rs = pstmt.executeQuery(); 
-			
-			List<Author> authorList = new ArrayList<>();
-
-			List<Publisher> publisherList = new ArrayList<>();
-
-			List<Book> bookList = new ArrayList<>();
 
 			//도서명 저자명 출판사
 			while(rs.next()) {
@@ -78,33 +71,24 @@ public class BookSearchMain {
 						.author(author)
 						.publisher(publisher)
 						.build();
-				
-				authorList.add(author);
-				publisherList.add(publisher);
-				bookList.add(book);
-				
+								
+				bookList.add(book);				
 			
 			}
-			
-			bookList.forEach(book -> System.out.println(book));
-
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-
 			pool.freeConnection(con, pstmt, rs);
-
 		}
 		
+		System.out.println("< 도서명 / 저자명 / 출판사 >");
+		for(Book book : bookList) {
+			System.out.println(book.getBookName() + " / " + 
+					book.getAuthor().getAuthorName() + " / " + 
+					book.getPublisher().getPublisherName());
+		}
 				
 	}
 	
-
-	
-	
-		
-		
-	
-
 }
