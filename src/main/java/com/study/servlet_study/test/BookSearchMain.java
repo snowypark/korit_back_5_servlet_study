@@ -21,7 +21,7 @@ public class BookSearchMain {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		List<Book> bookList = new ArrayList<>(); // Book 객체
+		List<Book> bookList = new ArrayList<>(); // 책을 담는 리스트
 		
 		
 		String searchValue = null;
@@ -35,7 +35,7 @@ public class BookSearchMain {
 			con = pool.getConnection();
 			
 			sql = "select\r\n"
-					+ "		bt.book_id,\r\n"			//1
+					+ "	   bt.book_id,\r\n"				//1
 					+ "    bt.book_name,\r\n"			//2
 					+ "    bt.author_id,\r\n"			//3
 					+ "    at.author_name,\r\n"			//4
