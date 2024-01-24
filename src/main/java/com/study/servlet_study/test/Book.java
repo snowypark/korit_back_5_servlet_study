@@ -12,7 +12,6 @@ public class Book {
 	private Author author;
 	private Publisher publisher;
 	
-	
-	
+
 	
 }
