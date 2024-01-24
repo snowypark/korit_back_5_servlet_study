@@ -53,10 +53,10 @@ public class BookListServlet extends HttpServlet {
 			params.put("publisherName", publisherName);
 		}				
 		params.size();		
-				
+		
 		//map put ....
 		
-		List<Book> book = bookService.searchBookList(params);
+		List<Book> book = bookService.searchBooksList(params);
 		
 		response.setContentType("text/plain");
 		response.setStatus(200);

@@ -31,7 +31,7 @@ public class BookService {
 		return bookRepository.findBookByBookId(bookId);
 	}
 
-	public List<Book> searchBookList(Map<String, String> params) {
+	public List<Book> searchBooksList(Map<String, String> params) {
 	    return bookRepository.searchBookList(params);
 	    	    
 	}
